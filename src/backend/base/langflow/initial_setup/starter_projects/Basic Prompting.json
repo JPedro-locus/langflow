@@ -500,7 +500,7 @@
         "data": {
           "id": "undefined-kVLkG",
           "node": {
-            "description": "## 📖 README\n\nPerform basic prompting with an OpenAI model.\n\n#### Quick Start\n- Add your **OpenAI API key** to the **OpenAI Model**\n- Open the **Playground** to chat with your bot.\n\n#### Next steps:\n Experiment by changing the prompt and the OpenAI model temperature to see how the bot's responses change.",
+            "description": "## 📖 README\n\nExecute prompts básicos com um modelo OpenAI.\n\n#### Quick Start\n- Add your **OpenAI API key** to the **OpenAI Model**\n- Open the **Playground** to chat with your bot.\n\n#### Next steps:\n Experiment by changing the prompt and the OpenAI model temperature to see how the bot's responses change.",
             "display_name": "Read Me",
             "documentation": "",
             "template": {
@@ -1260,7 +1260,7 @@
       "zoom": 0.7575251406952855
     }
   },
-  "description": "Perform basic prompting with an OpenAI model.",
+  "description": "Execute prompts básicos com um modelo OpenAI.",
   "endpoint_name": null,
   "gradient": "2",
   "icon": "Braces",

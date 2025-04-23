@@ -434,7 +434,7 @@
         "data": {
           "id": "undefined-MqgKn",
           "node": {
-            "description": "## 📖 README\n\nPerform basic prompting with an OpenAI model.\n\n#### Quick Start\n- Add your **OpenAI API key** to the **OpenAI Model**\n- Open the **Playground** to chat with your bot.\n\n#### Next steps:\n Experiment by changing the prompt and the OpenAI model temperature to see how the bot's responses change.",
+            "description": "## 📖 README\n\nExecute prompts básicos com um modelo OpenAI.\n\n#### Quick Start\n- Add your **OpenAI API key** to the **OpenAI Model**\n- Open the **Playground** to chat with your bot.\n\n#### Next steps:\n Experiment by changing the prompt and the OpenAI model temperature to see how the bot's responses change.",
             "display_name": "Read Me",
             "documentation": "",
             "template": {
@@ -1086,7 +1086,7 @@
       "zoom": 0.7749929474098888
     }
   },
-  "description": "Perform basic prompting with an OpenAI model.",
+  "description": "Execute prompts básicos com um modelo OpenAI.",
   "name": "LANGFLOW TEST",
   "last_tested_version": "1.1.1",
   "endpoint_name": null,

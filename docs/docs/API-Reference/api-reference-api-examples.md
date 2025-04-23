@@ -1053,8 +1053,8 @@ curl -X GET \
 
 ```json
 {
-  "name": "Basic Prompting",
-  "description": "Perform basic prompting with an OpenAI model.",
+  "name": "Prompt básico",
+  "description": "Execute prompts básicos com um modelo OpenAI.",
   "icon": "Braces",
   "icon_bg_color": null,
   "gradient": "2",

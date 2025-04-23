@@ -101,7 +101,7 @@ export default function TemplatesModal({
                       name="Plus"
                       className="h-4 w-4 shrink-0"
                     />
-                    Blank Flow
+                    Fluxo em branco
                   </Button>
                 </div>
               </BaseModal.Footer>

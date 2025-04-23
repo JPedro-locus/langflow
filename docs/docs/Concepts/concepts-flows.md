@@ -114,8 +114,8 @@ Additional information about the flow is stored in the root `data` object.
 * Metadata and project information including the name, description, and `last_tested_version` of the flow.
 ```json
 {
-  "name": "Basic Prompting",
-  "description": "Perform basic prompting with an OpenAI model.",
+  "name": "Prompt básico",
+  "description": "Execute prompts básicos com um modelo OpenAI.",
   "tags": ["chatbots"],
   "id": "1511c230-d446-43a7-bfc3-539e69ce05b8",
   "last_tested_version": "1.0.19.post2",
@@ -140,7 +140,7 @@ Notes are written in Markdown and stored as `node` objects.
 {
   "id": "undefined-kVLkG",
   "node": {
-    "description": "## 📖 README\nPerform basic prompting with an OpenAI model.\n\n#### Quick Start\n- Add your **OpenAI API key** to the **OpenAI Model**\n- Open the **Playground** to chat with your bot.\n..."
+    "description": "## 📖 README\nExecute prompts básicos com um modelo OpenAI.\n\n#### Quick Start\n- Add your **OpenAI API key** to the **OpenAI Model**\n- Open the **Playground** to chat with your bot.\n..."
   }
 }
 ```
