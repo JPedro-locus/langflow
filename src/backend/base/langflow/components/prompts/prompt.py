@@ -8,7 +8,7 @@ from langflow.template.utils import update_template_values
 
 class PromptComponent(Component):
     display_name: str = "Prompt"
-    description: str = "Create a prompt template with dynamic variables."
+    description: str = "Crie um modelo de prompt com variáveis ​​dinâmicas."
     icon = "prompts"
     trace_type = "prompt"
     name = "Prompt"

@@ -4,40 +4,44 @@ from langflow.schema.message import Message
 
 
 class ParseDataFrameComponent(Component):
-    display_name = "Parse DataFrame"
+    display_name = "Analisar DataFrame"
     description = (
-        "Convert a DataFrame into plain text following a specified template. "
-        "Each column in the DataFrame is treated as a possible template key, e.g. {col_name}."
+        "Converte um DataFrame em texto plano seguindo um modelo especificado. "
+        "Cada coluna do DataFrame é tratada como uma possível chave de modelo, ex.: {coluna_nome}."
     )
     icon = "braces"
     name = "ParseDataFrame"
     legacy = True
 
     inputs = [
-        DataFrameInput(name="df", display_name="DataFrame", info="The DataFrame to convert to text rows."),
+        DataFrameInput(
+            name="df",
+            display_name="DataFrame",
+            info="O DataFrame a ser convertido em linhas de texto."
+        ),
         MultilineInput(
             name="template",
             display_name="Template",
             info=(
-                "The template for formatting each row. "
-                "Use placeholders matching column names in the DataFrame, for example '{col1}', '{col2}'."
+                "O modelo para formatar cada linha. "
+                "Use placeholders iguais aos nomes das colunas do DataFrame, por exemplo '{col1}', '{col2}'."
             ),
             value="{text}",
         ),
         StrInput(
             name="sep",
-            display_name="Separator",
+            display_name="Separador",
             advanced=True,
             value="\n",
-            info="String that joins all row texts when building the single Text output.",
+            info="String que une todos os textos das linhas ao gerar a saída de texto única.",
         ),
     ]
 
     outputs = [
         Output(
-            display_name="Text",
+            display_name="Texto",
             name="text",
-            info="All rows combined into a single text, each row formatted by the template and separated by `sep`.",
+            info="Todas as linhas combinadas em um único texto, cada linha formatada pelo modelo e separada por `sep`.",
             method="parse_data",
         ),
     ]
@@ -49,20 +53,20 @@ class ParseDataFrameComponent(Component):
         return dataframe, template, sep
 
     def parse_data(self) -> Message:
-        """Converts each row of the DataFrame into a formatted string using the template.
+        """Converte cada linha do DataFrame em uma string formatada pelo modelo
 
-        then joins them with `sep`. Returns a single combined string as a Message.
+        e então as une com o separador `sep`. Retorna a string combinada.
         """
         dataframe, template, sep = self._clean_args()
 
         lines = []
-        # For each row in the DataFrame, build a dict and format
+        # Para cada linha do DataFrame, constrói um dicionário e formata
         for _, row in dataframe.iterrows():
             row_dict = row.to_dict()
-            text_line = template.format(**row_dict)  # e.g. template="{text}", row_dict={"text": "Hello"}
+            text_line = template.format(**row_dict)  # ex.: template="{text}", row_dict={"text": "Olá"}
             lines.append(text_line)
 
-        # Join all lines with the provided separator
+        # Une todas as linhas com o separador definido
         result_string = sep.join(lines)
-        self.status = result_string  # store in self.status for UI logs
+        self.status = result_string  # armazena em self.status para logs de UI
         return Message(text=result_string)

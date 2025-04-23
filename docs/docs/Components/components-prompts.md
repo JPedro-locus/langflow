@@ -36,7 +36,7 @@ When variables are added to a prompt template, new fields are automatically crea
 
 | Name     | Display Name | Info                                                              |
 |----------|--------------|-------------------------------------------------------------------|
-| template | Template     | Create a prompt template with dynamic variables.                  |
+| template | Template     | Crie um modelo de prompt com variáveis ​​dinâmicas.                  |
 
 ### Outputs
 

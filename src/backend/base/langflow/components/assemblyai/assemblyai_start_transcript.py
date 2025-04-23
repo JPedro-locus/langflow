@@ -9,8 +9,8 @@ from langflow.schema import Data
 
 
 class AssemblyAITranscriptionJobCreator(Component):
-    display_name = "AssemblyAI Start Transcript"
-    description = "Create a transcription job for an audio file using AssemblyAI with advanced options"
+    display_name = "Transcrição inicial do AssemblyAI"
+    description = "Crie um trabalho de transcrição para um arquivo de áudio usando AssemblyAI com opções avançadas"
     documentation = "https://www.assemblyai.com/docs"
     icon = "AssemblyAI"
 

@@ -8,8 +8,8 @@ from langflow.schema import Data
 
 
 class AssemblyAITranscriptionJobPoller(Component):
-    display_name = "AssemblyAI Poll Transcript"
-    description = "Poll for the status of a transcription job using AssemblyAI"
+    display_name = "Transcrição da enquete da AssemblyAI"
+    description = "Enquete sobre o status de um trabalho de transcrição usando AssemblyAI"
     documentation = "https://www.assemblyai.com/docs"
     icon = "AssemblyAI"
 

@@ -11,7 +11,7 @@ from langflow.utils.constants import MESSAGE_SENDER_AI, MESSAGE_SENDER_USER
 
 class MemoryComponent(Component):
     display_name = "Message History"
-    description = "Retrieves stored chat messages from Langflow tables or an external memory."
+    description = " Recupera mensagens de bate-papo armazenadas de tabelas do Langflow ou de uma memória externa."
     icon = "message-square-more"
     name = "Memory"
 

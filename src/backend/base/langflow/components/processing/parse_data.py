@@ -6,8 +6,8 @@ from langflow.schema.message import Message
 
 
 class ParseDataComponent(Component):
-    display_name = "Data to Message"
-    description = "Convert Data objects into Messages using any {field_name} from input data."
+    display_name = "Data para Mensagem"
+    description = "Converta objetos de dados em mensagens usando qualquer {field_name} de dados de entrada. "
     icon = "message-square"
     name = "ParseData"
     legacy = True
