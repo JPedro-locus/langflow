@@ -80,5 +80,5 @@ class TestCalculatorComponent(ComponentTestBaseWithoutClient):
         # Assert
         node_data = frontend_node["data"]["node"]
         assert node_data["display_name"] == "Calculator"
-        assert node_data["description"] == "Perform basic arithmetic operations on a given expression."
+        assert node_data["description"] == "Executar operações aritméticas básicas em uma determinada expressão."
         assert node_data["icon"] == "calculator"

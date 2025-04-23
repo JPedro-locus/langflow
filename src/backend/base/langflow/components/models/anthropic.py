@@ -17,7 +17,7 @@ from langflow.schema.dotdict import dotdict
 
 class AnthropicModelComponent(LCModelComponent):
     display_name = "Anthropic"
-    description = "Generate text using Anthropic Chat&Completion LLMs with prefill support."
+    description = "Gere texto usando LLMs de bate-papo e conclusão antroposóficos com suporte a pré-preenchimento."
     icon = "Anthropic"
     name = "AnthropicModel"
 

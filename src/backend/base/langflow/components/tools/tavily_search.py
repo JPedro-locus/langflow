@@ -8,7 +8,13 @@ from pydantic import BaseModel, Field
 
 from langflow.base.langchain_utilities.model import LCToolComponent
 from langflow.field_typing import Tool
-from langflow.inputs import BoolInput, DropdownInput, IntInput, MessageTextInput, SecretStrInput
+from langflow.inputs import (
+    BoolInput,
+    DropdownInput,
+    IntInput,
+    MessageTextInput,
+    SecretStrInput,
+)
 from langflow.schema import Data
 
 
@@ -23,21 +29,37 @@ class TavilySearchTopic(Enum):
 
 
 class TavilySearchSchema(BaseModel):
-    query: str = Field(..., description="The search query you want to execute with Tavily.")
-    search_depth: TavilySearchDepth = Field(TavilySearchDepth.BASIC, description="The depth of the search.")
-    topic: TavilySearchTopic = Field(TavilySearchTopic.GENERAL, description="The category of the search.")
-    max_results: int = Field(5, description="The maximum number of search results to return.")
-    include_images: bool = Field(default=False, description="Include a list of query-related images in the response.")
-    include_answer: bool = Field(default=False, description="Include a short answer to original query.")
+    query: str = Field(..., description="A consulta de busca que você deseja executar com o Tavily.")
+    search_depth: TavilySearchDepth = Field(
+        TavilySearchDepth.BASIC,
+        description="A profundidade da busca.",
+    )
+    topic: TavilySearchTopic = Field(
+        TavilySearchTopic.GENERAL,
+        description="A categoria da busca.",
+    )
+    max_results: int = Field(
+        5,
+        description="O número máximo de resultados de busca a retornar.",
+    )
+    include_images: bool = Field(
+        False,
+        description="Incluir uma lista de imagens relacionadas à consulta na resposta.",
+    )
+    include_answer: bool = Field(
+        False,
+        description="Incluir uma breve resposta para a consulta original.",
+    )
 
 
 class TavilySearchToolComponent(LCToolComponent):
-    display_name = "Tavily AI Search [DEPRECATED]"
-    description = """**Tavily AI** is a search engine optimized for LLMs and RAG, \
-        aimed at efficient, quick, and persistent search results. It can be used independently or as an agent tool.
-
-Note: Check 'Advanced' for all options.
-"""
+    display_name = "Busca AI Tavily [OBSOLETO]"
+    description = (
+        "**Tavily AI** é um mecanismo de busca otimizado para LLMs e RAG, "
+        "voltado para resultados eficientes, rápidos e persistentes. Pode ser usado "
+        "de forma independente ou como ferramenta de agente.\n\n"
+        "Observação: verifique a opção 'Avançado' para mais configurações."
+    )
     icon = "TavilyIcon"
     name = "TavilyAISearch"
     documentation = "https://docs.tavily.com/"
@@ -46,56 +68,56 @@ Note: Check 'Advanced' for all options.
     inputs = [
         SecretStrInput(
             name="api_key",
-            display_name="Tavily API Key",
+            display_name="Chave de API Tavily",
             required=True,
-            info="Your Tavily API Key.",
+            info="Sua chave de API do Tavily.",
         ),
         MessageTextInput(
             name="query",
-            display_name="Search Query",
-            info="The search query you want to execute with Tavily.",
+            display_name="Consulta de Busca",
+            info="A consulta de busca que você deseja executar com o Tavily.",
         ),
         DropdownInput(
             name="search_depth",
-            display_name="Search Depth",
-            info="The depth of the search.",
+            display_name="Profundidade da Busca",
+            info="A profundidade da busca.",
             options=list(TavilySearchDepth),
             value=TavilySearchDepth.ADVANCED,
             advanced=True,
         ),
         DropdownInput(
             name="topic",
-            display_name="Search Topic",
-            info="The category of the search.",
+            display_name="Tópico da Busca",
+            info="A categoria da busca.",
             options=list(TavilySearchTopic),
             value=TavilySearchTopic.GENERAL,
             advanced=True,
         ),
         IntInput(
             name="max_results",
-            display_name="Max Results",
-            info="The maximum number of search results to return.",
+            display_name="Resultados Máximos",
+            info="O número máximo de resultados de busca a retornar.",
             value=5,
             advanced=True,
         ),
         BoolInput(
             name="include_images",
-            display_name="Include Images",
-            info="Include a list of query-related images in the response.",
-            value=True,
+            display_name="Incluir Imagens",
+            info="Incluir uma lista de imagens relacionadas à consulta na resposta.",
+            value=False,
             advanced=True,
         ),
         BoolInput(
             name="include_answer",
-            display_name="Include Answer",
-            info="Include a short answer to original query.",
-            value=True,
+            display_name="Incluir Resposta",
+            info="Incluir uma breve resposta para a consulta original.",
+            value=False,
             advanced=True,
         ),
     ]
 
     def run_model(self) -> list[Data]:
-        # Convert string values to enum instances with validation
+        # Converte valores de string para instâncias de enum com validação
         try:
             search_depth_enum = (
                 self.search_depth
@@ -103,16 +125,18 @@ Note: Check 'Advanced' for all options.
                 else TavilySearchDepth(str(self.search_depth).lower())
             )
         except ValueError as e:
-            error_message = f"Invalid search depth value: {e!s}"
+            error_message = f"Valor de profundidade de busca inválido: {e!s}"
             self.status = error_message
             return [Data(data={"error": error_message})]
 
         try:
             topic_enum = (
-                self.topic if isinstance(self.topic, TavilySearchTopic) else TavilySearchTopic(str(self.topic).lower())
+                self.topic
+                if isinstance(self.topic, TavilySearchTopic)
+                else TavilySearchTopic(str(self.topic).lower())
             )
         except ValueError as e:
-            error_message = f"Invalid topic value: {e!s}"
+            error_message = f"Valor de tópico inválido: {e!s}"
             self.status = error_message
             return [Data(data={"error": error_message})]
 
@@ -126,9 +150,10 @@ Note: Check 'Advanced' for all options.
         )
 
     def build_tool(self) -> Tool:
+        # Constrói a ferramenta estruturada para uso com LangChain
         return StructuredTool.from_function(
             name="tavily_search",
-            description="Perform a web search using the Tavily API.",
+            description="Executa uma busca web usando a API do Tavily.",
             func=self._tavily_search,
             args_schema=TavilySearchSchema,
         )
@@ -143,12 +168,12 @@ Note: Check 'Advanced' for all options.
         include_images: bool = False,
         include_answer: bool = False,
     ) -> list[Data]:
-        # Validate enum values
+        # Valida tipos de enum
         if not isinstance(search_depth, TavilySearchDepth):
-            msg = f"Invalid search_depth value: {search_depth}"
+            msg = f"Profundidade de busca inválida: {search_depth}"
             raise TypeError(msg)
         if not isinstance(topic, TavilySearchTopic):
-            msg = f"Invalid topic value: {topic}"
+            msg = f"Tópico de busca inválido: {topic}"
             raise TypeError(msg)
 
         try:
@@ -167,40 +192,43 @@ Note: Check 'Advanced' for all options.
                 "include_answer": include_answer,
             }
 
+            # Executa requisição HTTP
             with httpx.Client() as client:
                 response = client.post(url, json=payload, headers=headers)
 
             response.raise_for_status()
-            search_results = response.json()
+            resultados = response.json()
 
             data_results = [
                 Data(
                     data={
-                        "title": result.get("title"),
-                        "url": result.get("url"),
-                        "content": result.get("content"),
-                        "score": result.get("score"),
+                        "title": item.get("title"),
+                        "url": item.get("url"),
+                        "content": item.get("content"),
+                        "score": item.get("score"),
                     }
                 )
-                for result in search_results.get("results", [])
+                for item in resultados.get("results", [])
             ]
 
-            if include_answer and search_results.get("answer"):
-                data_results.insert(0, Data(data={"answer": search_results["answer"]}))
+            # Insere resposta resumida, se solicitado
+            if include_answer and resultados.get("answer"):
+                data_results.insert(0, Data(data={"answer": resultados["answer"]}))
 
-            if include_images and search_results.get("images"):
-                data_results.append(Data(data={"images": search_results["images"]}))
+            # Adiciona lista de imagens, se solicitado
+            if include_images and resultados.get("images"):
+                data_results.append(Data(data={"images": resultados["images"]}))
 
-            self.status = data_results  # type: ignore[assignment]
+            self.status = data_results  # armazena o status para logs
 
         except httpx.HTTPStatusError as e:
-            error_message = f"HTTP error: {e.response.status_code} - {e.response.text}"
+            error_message = f"Erro HTTP: {e.response.status_code} - {e.response.text}"
             logger.debug(error_message)
             self.status = error_message
             raise ToolException(error_message) from e
         except Exception as e:
-            error_message = f"Unexpected error: {e}"
-            logger.opt(exception=True).debug("Error running Tavily Search")
+            error_message = f"Erro inesperado: {e}"
+            logger.opt(exception=True).debug("Erro ao executar busca Tavily")
             self.status = error_message
             raise ToolException(error_message) from e
         return data_results

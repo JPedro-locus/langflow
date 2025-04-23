@@ -16,7 +16,7 @@ from langflow.logging import logger
 
 class OpenAIModelComponent(LCModelComponent):
     display_name = "OpenAI"
-    description = "Generates text using OpenAI LLMs."
+    description = "Gera texto usando OpenAI LLMs."
     icon = "OpenAI"
     name = "OpenAIModel"
 

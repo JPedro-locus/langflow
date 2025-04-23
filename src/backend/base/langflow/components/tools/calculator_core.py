@@ -10,7 +10,7 @@ from langflow.schema import Data
 
 class CalculatorComponent(Component):
     display_name = "Calculator"
-    description = "Perform basic arithmetic operations on a given expression."
+    description = "Executar operações aritméticas básicas em uma determinada expressão."
     icon = "calculator"
 
     # Cache operators dictionary as a class variable

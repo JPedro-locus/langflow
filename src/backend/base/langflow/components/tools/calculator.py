@@ -14,7 +14,7 @@ from langflow.schema import Data
 
 class CalculatorToolComponent(LCToolComponent):
     display_name = "Calculator [DEPRECATED]"
-    description = "Perform basic arithmetic operations on a given expression."
+    description = "Executar operações aritméticas básicas em uma determinada expressão."
     icon = "calculator"
     name = "CalculatorTool"
     legacy = True

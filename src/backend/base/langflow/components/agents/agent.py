@@ -26,7 +26,7 @@ def set_advanced_true(component_input):
 
 class AgentComponent(ToolCallingAgentComponent):
     display_name: str = "Agent"
-    description: str = "Define the agent's instructions, then enter a task to complete using tools."
+    description: str = "Defina as instruções do agente e insira uma tarefa para concluir usando ferramentas."
     icon = "bot"
     beta = False
     name = "Agent"

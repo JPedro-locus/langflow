@@ -38,12 +38,12 @@ The `ChatInput` node is the entry point of the flow. It's the first node that wi
 ```json
 {
   "data": {
-    "description": "Get chat inputs from the Playground.",
+    "description": "Obtenha entradas de bate-papo do Playground.",
     "display_name": "Chat Input",
     "id": "ChatInput-jFwUm",
     "node": {
       "base_classes": ["Message"],
-      "description": "Get chat inputs from the Playground.",
+      "description": "Obtenha entradas de bate-papo do Playground.",
       "display_name": "Chat Input",
       "icon": "MessagesSquare",
       "template": {
